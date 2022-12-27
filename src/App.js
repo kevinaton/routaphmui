@@ -1,13 +1,15 @@
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
-import React from "react";
+import { Box } from "@mui/material";
 
 function App() {
   return (
-    <div>
+    <Box style={{ height: "100%", overflow:'hidden'}} flex={1}>
       <Navbar />
-      <Home />
-    </div>
+      <Box style={{ height: "100%", overflow:'hidden' }} flex={1}>
+        <Home />
+      </Box>
+    </Box>
   );
 }
 
