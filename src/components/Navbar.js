@@ -2,8 +2,9 @@ import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, Collapse, CssBaseline, Divider, IconButton, List, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import { ChevronLeft, ChevronRight, LocationCityOutlined, InfoOutlined, ExpandLess, ExpandMore } from '@mui/icons-material';
+import { ChevronLeft, ChevronRight, InfoOutlined, ExpandLess, ExpandMore } from '@mui/icons-material';
 import RouteOutlinedIcon from '@mui/icons-material/RouteOutlined';
+import {Link} from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -14,13 +15,20 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: 'space-between',
-}));
+}))
 
-export default function Navbar() {
+const RouterLink = styled(Link)({
+	textDecoration:'none'
+})
+
+const DrawerListItemText = styled(ListItemText) (({ theme }) => ({
+	color:theme.palette.blacktext.main,
+}))
+
+export default function Navbar(data) {
 	const theme = useTheme()
 	const [open, setOpen] = React.useState(false);
-	const [routeOpen, setRouteOpen] = React.useState(false);
-	const [cityOpen, setCityOpen] = React.useState(false);
+	const [routeOpen, setRouteOpen] = React.useState(false);	
 	const toggleDrawer = (state) => (event) => {
 		if (
       event &&
@@ -30,13 +38,10 @@ export default function Navbar() {
       return;
     }
     setOpen(state);
-	}
+	};
 	const handleRouteClick = () => {
 		setRouteOpen(!routeOpen);
-	}
-	const handleCityClick = () => {
-		setCityOpen(!cityOpen);
-	}
+	};
 
 	return (
 		<Box 
@@ -93,15 +98,20 @@ export default function Navbar() {
 					</ListItemButton>
 					<Collapse in={routeOpen} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
-							<ListItemButton sx={{ pl:4 }}>
-								<ListItemText primary="Cagayan de Oro City" />
-							</ListItemButton>
-							<ListItemButton sx={{ pl:4 }}>
-								<ListItemText primary="Cebu City" />
-							</ListItemButton>
+							{ 
+								data.prop.map((city) => (
+									<RouterLink key={city.name} to={`${city.path}`}>
+										<ListItemButton onClick={toggleDrawer(false)} sx={{ pl:4 }}>
+												<DrawerListItemText primary={city.name} />
+										</ListItemButton>
+									</RouterLink>
+								))
+							}
 						</List>
 					</Collapse>
-					<ListItemButton onClick={handleCityClick}>
+					
+					{/* Add city route details soon */}
+					{/* <ListItemButton onClick={handleCityClick}>
 						<ListItemIcon><LocationCityOutlined /></ListItemIcon>
 						<ListItemText primary='Cities' />
 						{cityOpen ? <ExpandLess /> : <ExpandMore />}
@@ -115,11 +125,13 @@ export default function Navbar() {
 								<ListItemText primary="Cebu City" />
 							</ListItemButton>
 						</List>
-					</Collapse>
-					<ListItemButton>
-						<ListItemIcon><InfoOutlined /></ListItemIcon>
-						<ListItemText primary='About' />
-					</ListItemButton>
+					</Collapse> */}
+					<RouterLink underline='none' to={'/About'} >
+						<ListItemButton onClick={toggleDrawer(false)}>
+								<ListItemIcon><InfoOutlined /></ListItemIcon>
+								<DrawerListItemText primary='About' />
+						</ListItemButton>
+					</RouterLink>
 				</List>
 			</SwipeableDrawer>
 		</Box>

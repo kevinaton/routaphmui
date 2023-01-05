@@ -6,9 +6,9 @@ const paperStyle = {
   overflow:"hidden"
 };
 
-const Home = () => {
+const Cagayan = () => {
   return (
-    <Paper style={paperStyle} flex={1}>
+    <Paper sx={paperStyle} flex={1}>
       <iframe 
         style={{height:'100%', width:'100%', position:'relative', overflow:'hidden'}}
         src="https://www.google.com/maps/d/u/0/embed?mid=1VxPR9vi1WxjKjcHgrvSjd8p1XTDFRLU&ehbc=2E312F"
@@ -18,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Cagayan;
