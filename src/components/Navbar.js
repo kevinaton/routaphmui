@@ -25,10 +25,29 @@ const DrawerListItemText = styled(ListItemText) (({ theme }) => ({
 	color:theme.palette.blacktext.main,
 }))
 
+
+
 export default function Navbar(data) {
+
+	// adding theme
 	const theme = useTheme()
+
+	// Highlight menu that is currently active
+	const [pathName, setPath] = React.useState(window.location.pathname)
+	const handleListItemClick = (event, pathSelected) => {
+		setPath('/' + pathSelected)
+	}
+	
+	// Get about in the data and the cities
+	const aboutDetails = data.prop.filter((element) => {
+		return element.name == 'About'
+	})
+	const cityList = data.prop.filter((element) => {
+		return element.name != 'About'
+	})
+
+	// Handle the sidemenu toggle
 	const [open, setOpen] = React.useState(false);
-	const [routeOpen, setRouteOpen] = React.useState(false);	
 	const toggleDrawer = (state) => (event) => {
 		if (
       event &&
@@ -37,15 +56,18 @@ export default function Navbar(data) {
     ) {
       return;
     }
-    setOpen(state);
+    setOpen(state)
 	};
+	
+	// Handle the collapse of jeepneyroutes
+	const [routeOpen, setRouteOpen] = React.useState(false);
 	const handleRouteClick = () => {
 		setRouteOpen(!routeOpen);
 	};
 
 	return (
 		<Box 
-			sx={{ flexGrow: 1 }}
+			sx={{ flexGrow: 1, bgcolor: 'background.paper' }}
 		>
 			<CssBaseline />
 			<AppBar position="static" open={open} color="inherit">
@@ -99,9 +121,9 @@ export default function Navbar(data) {
 					<Collapse in={routeOpen} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
 							{ 
-								data.prop.map((city) => (
+								cityList.map((city) => (
 									<RouterLink key={city.name} to={`${city.path}`}>
-										<ListItemButton onClick={toggleDrawer(false)} sx={{ pl:4 }}>
+										<ListItemButton selected={pathName == '/' + city.path} onClick={(event) => {toggleDrawer(false), handleListItemClick(event, city.path)}} sx={{ pl:4 }}>
 												<DrawerListItemText primary={city.name} />
 										</ListItemButton>
 									</RouterLink>
@@ -126,10 +148,11 @@ export default function Navbar(data) {
 							</ListItemButton>
 						</List>
 					</Collapse> */}
-					<RouterLink underline='none' to={'/About'} >
-						<ListItemButton onClick={toggleDrawer(false)}>
+
+					<RouterLink underline='none' to={aboutDetails[0].path} >
+						<ListItemButton selected={pathName == '/' + aboutDetails[0].path} onClick={(event) => {toggleDrawer(false), handleListItemClick(event, aboutDetails[0].path)}}>
 								<ListItemIcon><InfoOutlined /></ListItemIcon>
-								<DrawerListItemText primary='About' />
+								<DrawerListItemText primary={aboutDetails[0].name} />
 						</ListItemButton>
 					</RouterLink>
 				</List>

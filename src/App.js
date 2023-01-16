@@ -8,14 +8,15 @@ import About from "./components/About";
 function App() {
 
   // List of city with route
-  const cityList = [
+  const menuList = [
     {name:'Cagayan de Oro City', path:'route/cagayandeorocity'},
-    {name:'Cebu City', path:'route/cebucity'}
+    {name:'Cebu City', path:'route/cebucity'},
+    {name:'About', path:'about', index:2}
   ];
 
   return (
     <Box sx={{ height:'100%', overflow:'hidden'}} flex={1}>
-      <Navbar prop={cityList} />
+      <Navbar prop={menuList} />
       <Box sx={{ height:'100%', overflow:'hidden' }} flex={1}>
         <Routes>
           <Route path="route/cagayandeorocity" element={<Cagayan />} />

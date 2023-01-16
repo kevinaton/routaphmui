@@ -31,7 +31,7 @@ const About = () => {
   const bpiOnClose = () => bpiSetOpen(false)
 
   return (
-    <Box sx={{p:5}}>
+    <Box sx={{p:5, width:1/2}}>
       <Box sx={boxSpace}>
         <Typography variant="h4" component="h1">About Us</Typography>
         <Typography variant="body1" component="p">
@@ -89,9 +89,6 @@ const About = () => {
             src={bpiImage}
           />
         </Modal>
-
-        <Button variant="outlined" color="primary" sx={{mt:2, mr:2}}>BTC</Button>
-        <Button variant="outlined" color="primary" sx={{mt:2, mr:2}}>USDT</Button>
       </Box>
     </Box>
   );
