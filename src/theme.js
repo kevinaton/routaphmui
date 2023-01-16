@@ -8,8 +8,8 @@ import { grey } from "@mui/material/colors";
 export const theme = createTheme({
 	palette:{
 		primary:{
-				main:'#82AAE3',
-				light:'#BFEAF5'
+				main:'#0096FF',
+				light:'#0096FF'
 		},
 		secondary:{
 				main:'#91D8E4',
@@ -17,6 +17,11 @@ export const theme = createTheme({
 		},
 		blacktext:{
 				main: grey[900]
+		},
+		discordColor:{
+				main:'#5865f2',
+				light:'#5865f2',
+				contrastText: "#fff"
 		}
 	},
 	typography: {

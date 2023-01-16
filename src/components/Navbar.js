@@ -93,7 +93,7 @@ export default function Navbar(data) {
 				>
 					<ListItemButton onClick={handleRouteClick}>
 						<ListItemIcon><RouteOutlinedIcon /></ListItemIcon>
-						<ListItemText primary='Routes' />
+						<ListItemText primary='Jeepney Routes' />
 						{routeOpen ? <ExpandLess /> : <ExpandMore />}
 					</ListItemButton>
 					<Collapse in={routeOpen} timeout="auto" unmountOnExit>
