@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, Collapse, CssBaseline, Divider, IconButton, List, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import { ChevronLeft, ChevronRight, InfoOutlined, ExpandLess, ExpandMore } from '@mui/icons-material';
+import { ChevronLeft, ChevronRight, InfoOutlined, ExpandLess, ExpandMore, LocationCityOutlined } from '@mui/icons-material';
 import RouteOutlinedIcon from '@mui/icons-material/RouteOutlined';
 import {Link} from 'react-router-dom';
 
@@ -28,27 +28,27 @@ const DrawerListItemText = styled(ListItemText) (({ theme }) => ({
 
 
 export default function Navbar(data) {
-
 	// adding theme
 	const theme = useTheme()
 
 	// Highlight menu that is currently active
 	const [pathName, setPath] = React.useState(window.location.pathname)
-	const handleListItemClick = (event, pathSelected) => {
+	const handleListItemClick = (pathSelected) => {
 		setPath('/' + pathSelected)
 	}
 	
 	// Get about in the data and the cities
-	const aboutDetails = data.prop.filter((element) => {
+	const aboutDetails = data.prop.city.filter((element) => {
 		return element.name == 'About'
 	})
-	const cityList = data.prop.filter((element) => {
+	const cityList = data.prop.city.filter((element) => {
 		return element.name != 'About'
 	})
 
 	// Handle the sidemenu toggle
-	const [open, setOpen] = React.useState(false);
-	const toggleDrawer = (state) => (event) => {
+	const [state, setState] = React.useState(false);
+	const toggleDrawer = (open) => (event) => {
+	
 		if (
       event &&
       event.type === 'keydown' &&
@@ -56,21 +56,29 @@ export default function Navbar(data) {
     ) {
       return;
     }
-    setOpen(state)
+			setState(open)
 	};
 	
-	// Handle the collapse of jeepneyroutes
+	// Handle the collapse of city list
 	const [routeOpen, setRouteOpen] = React.useState(false);
 	const handleRouteClick = () => {
 		setRouteOpen(!routeOpen);
 	};
+
+	// Handle the collapse of cdo route
+	const [cdoOpen, setCdoOpen] = React.useState(false);
+	const handleCdoClick = () => {
+		setCdoOpen(!cdoOpen)
+	}
+
+
 
 	return (
 		<Box 
 			sx={{ flexGrow: 1, bgcolor: 'background.paper' }}
 		>
 			<CssBaseline />
-			<AppBar position="static" open={open} color="inherit">
+			<AppBar position="static" open={state} color="inherit">
 				<Toolbar>
 					<IconButton
 						size="large"
@@ -89,7 +97,7 @@ export default function Navbar(data) {
 			</AppBar>
 			<SwipeableDrawer
 				anchor="left"
-				open={open}
+				open={state}
 				onClose={toggleDrawer(false)}
 				onOpen={toggleDrawer(true)}
 				sx={{ 
@@ -114,17 +122,37 @@ export default function Navbar(data) {
 					disablePadding
 				>
 					<ListItemButton onClick={handleRouteClick}>
-						<ListItemIcon><RouteOutlinedIcon /></ListItemIcon>
-						<ListItemText primary='Jeepney Routes' />
+						<ListItemIcon><LocationCityOutlined /></ListItemIcon>
+						<ListItemText primary='Cities' />
 						{routeOpen ? <ExpandLess /> : <ExpandMore />}
 					</ListItemButton>
 					<Collapse in={routeOpen} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
 							{ 
-								cityList.map((city) => (
-									<RouterLink key={city.name} to={`${city.path}`}>
-										<ListItemButton selected={pathName == '/' + city.path} onClick={(event) => {toggleDrawer(false), handleListItemClick(event, city.path)}} sx={{ pl:4 }}>
-												<DrawerListItemText primary={city.name} />
+								cityList.map((route) => (
+									<RouterLink key={route.name} to={`${route.path}`}>
+										<ListItemButton selected={pathName == '/' + route.path} onClick={() => { toggleDrawer(false); handleListItemClick(route.path) }} sx={{ pl:4 }}>
+												<DrawerListItemText primary={route.name} />
+										</ListItemButton>
+									</RouterLink>
+								))
+							}
+						</List>
+					</Collapse>
+
+					
+					<ListItemButton onClick={handleCdoClick}>
+						<ListItemIcon><RouteOutlinedIcon /></ListItemIcon>
+						<ListItemText primary='Cagayan de Oro' />
+						{cdoOpen ? <ExpandLess /> : <ExpandMore />}
+					</ListItemButton>
+					<Collapse in={cdoOpen} timeout="auto" unmountOnExit>
+						<List component="div" disablePadding>
+							{ 
+								data.prop.cdo.map((cdo) => (
+									<RouterLink key={cdo.name} to={`${cdo.path}`}>
+										<ListItemButton selected={pathName == '/' + cdo.path} onClick={() => { toggleDrawer(false); handleListItemClick(cdo.path) }} sx={{ pl:4 }}>
+												<DrawerListItemText primary={cdo.name} />
 										</ListItemButton>
 									</RouterLink>
 								))
@@ -132,25 +160,10 @@ export default function Navbar(data) {
 						</List>
 					</Collapse>
 					
-					{/* Add city route details soon */}
-					{/* <ListItemButton onClick={handleCityClick}>
-						<ListItemIcon><LocationCityOutlined /></ListItemIcon>
-						<ListItemText primary='Cities' />
-						{cityOpen ? <ExpandLess /> : <ExpandMore />}
-					</ListItemButton>
-					<Collapse in={cityOpen} timeout="auto" unmountOnExit>
-						<List component="div" disablePadding>
-							<ListItemButton sx={{ pl:4 }}>
-								<ListItemText primary="Cagayan de Oro City" />
-							</ListItemButton>
-							<ListItemButton sx={{ pl:4 }}>
-								<ListItemText primary="Cebu City" />
-							</ListItemButton>
-						</List>
-					</Collapse> */}
+					
 
 					<RouterLink underline='none' to={aboutDetails[0].path} >
-						<ListItemButton selected={pathName == '/' + aboutDetails[0].path} onClick={(event) => {toggleDrawer(false), handleListItemClick(event, aboutDetails[0].path)}}>
+						<ListItemButton selected={pathName == '/' + aboutDetails[0].path} onClick={() => { toggleDrawer(false); handleListItemClick(aboutDetails[0].path) }}>
 								<ListItemIcon><InfoOutlined /></ListItemIcon>
 								<DrawerListItemText primary={aboutDetails[0].name} />
 						</ListItemButton>

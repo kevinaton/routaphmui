@@ -6,7 +6,7 @@ const paperStyle = {
   overflow:"hidden"
 };
 
-const Cagayan = () => {
+const rc = () => {
   return (
     <Paper sx={paperStyle} flex={1}>
       <iframe 
@@ -18,4 +18,4 @@ const Cagayan = () => {
   );
 };
 
-export default Cagayan;
+export default rc;
