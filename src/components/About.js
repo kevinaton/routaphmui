@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faDiscord , } from '@fortawesome/free-brands-svg-icons';
-import { Box, Button, Modal, Typography } from "@mui/material";
+import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import gcashImage from "../assets/gcash.JPG"
 import bpiImage from "../assets/bpiqr.jpg"
 import React from "react";
@@ -31,13 +31,21 @@ const About = () => {
   const bpiOnClose = () => bpiSetOpen(false)
 
   return (
-    <Box sx={{p:5, width:1/2}}>
+    <Container sx={{p:5}} maxWidth="xl">
       <Box sx={boxSpace}>
         <Typography variant="h4" component="h1">About Us</Typography>
         <Typography variant="body1" component="p">
           We build this app to help tourists and fellow filipinos on utilizing our public transport easily and safely. 
           We are focusing on areas outside Manila. This is to further promote the beautiful places in the Philippines.
         </Typography>
+      </Box>
+
+      <Box sx={boxSpace}>
+        <Typography variant="h5" component="h2">Give us Feedback</Typography>
+        <Typography>
+          Your feedback would greatly help us improve the experience of Routa.ph. Click the button below to provide us your suggestions, feedback, opportunities, or partnerships.
+        </Typography>
+        <Button variant="contained" size="medium" color="primary" sx={{mt:2}} href="https://docs.google.com/forms/d/e/1FAIpQLScLMmvUEe2IsBpK0ciWGMmq4g90BZFjN1s7iqMj1JgKoxp0oQ/viewform?usp=sf_link">Give Feedback</Button>
       </Box>
 
       <Box sx={boxSpace}>
@@ -90,7 +98,7 @@ const About = () => {
           />
         </Modal>
       </Box>
-    </Box>
+    </Container>
   );
 };
 

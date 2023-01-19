@@ -25,6 +25,15 @@ import C06C from "./components/RouteCebu/06c.js"
 import C06G from "./components/RouteCebu/06g.js"
 import C06H from "./components/RouteCebu/06h.js"
 import C07B from "./components/RouteCebu/06b.js"
+import C08F from "./components/RouteCebu/08f.js"
+import C08G from "./components/RouteCebu/08g.js"
+import C09C from "./components/RouteCebu/09c.js"
+import C09F from "./components/RouteCebu/09f.js"
+import C09G from "./components/RouteCebu/09g.js"
+import C10F from "./components/RouteCebu/10f.js"
+import C10G from "./components/RouteCebu/10g.js"
+import C10H from "./components/RouteCebu/10h.js"
+
 
 function App() {
 
@@ -54,6 +63,14 @@ function App() {
       {name:'06G', path:'route/cebu/06g', component:C06G},
       {name:'06H', path:'route/cebu/06h', component:C06H},
       {name:'07B', path:'route/cebu/07b', component:C07B},
+      {name:'08F', path:'route/cebu/08f', component:C08F},
+      {name:'08G', path:'route/cebu/08g', component:C08G},
+      {name:'09C', path:'route/cebu/09c', component:C09C},
+      {name:'09F', path:'route/cebu/09f', component:C09F},
+      {name:'09G', path:'route/cebu/09g', component:C09G},
+      {name:'10F', path:'route/cebu/10f', component:C10F},
+      {name:'10G', path:'route/cebu/10g', component:C10G},
+      {name:'10H', path:'route/cebu/10h', component:C10H},
     ]}
   ];
 

@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, InfoOutlined, ExpandLess, ExpandMore, Locati
 import RouteOutlinedIcon from '@mui/icons-material/RouteOutlined';
 import {Link} from 'react-router-dom';
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
