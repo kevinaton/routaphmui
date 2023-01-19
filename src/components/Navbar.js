@@ -28,27 +28,33 @@ const DrawerListItemText = styled(ListItemText) (({ theme }) => ({
 
 
 export default function Navbar(data) {
+	
 	// adding theme
 	const theme = useTheme()
 
 	// Highlight menu that is currently active
 	const [pathName, setPath] = React.useState(window.location.pathname)
-	const handleListItemClick = (pathSelected) => {
+	const handleListItemClick = (pathSelected, toggleState) => {
 		setPath('/' + pathSelected)
+		setState(toggleState)
 	}
 	
-	// Get about in the data and the cities
-	const aboutDetails = data.prop.city.filter((element) => {
+	// Get cities and about path
+	const aboutDetails = data.prop[0].submenu.filter((element) => {
 		return element.name == 'About'
 	})
-	const cityList = data.prop.city.filter((element) => {
+	const cityList = data.prop[0].submenu.filter((element) => {
 		return element.name != 'About'
 	})
+
+	// Get Nav details
+	const cities = data.prop[0],
+				cdoRoutes = data.prop[1],
+				cebuRoutes = data.prop[2]
 
 	// Handle the sidemenu toggle
 	const [state, setState] = React.useState(false);
 	const toggleDrawer = (open) => (event) => {
-	
 		if (
       event &&
       event.type === 'keydown' &&
@@ -59,17 +65,11 @@ export default function Navbar(data) {
 			setState(open)
 	};
 	
-	// Handle the collapse of city list
-	const [routeOpen, setRouteOpen] = React.useState(false);
-	const handleRouteClick = () => {
-		setRouteOpen(!routeOpen);
+	// Handle the collapse in navbar
+	const [routeOpen, setRouteOpen] = React.useState({});
+	const handleRouteClick = (id) => {
+		setRouteOpen((prevState) => ({ ...prevState, [id]: !prevState[id]}));
 	};
-
-	// Handle the collapse of cdo route
-	const [cdoOpen, setCdoOpen] = React.useState(false);
-	const handleCdoClick = () => {
-		setCdoOpen(!cdoOpen)
-	}
 
 
 
@@ -120,18 +120,18 @@ export default function Navbar(data) {
 					sx={{ width:'100%'}}
 					component="nav"
 					disablePadding
-				>
-					<ListItemButton onClick={handleRouteClick}>
+				>					
+					<ListItemButton onClick={() => handleRouteClick(cities.id)}>
 						<ListItemIcon><LocationCityOutlined /></ListItemIcon>
-						<ListItemText primary='Cities' />
-						{routeOpen ? <ExpandLess /> : <ExpandMore />}
+						<ListItemText primary={cities.name} />
+						{routeOpen[cities.id] ? <ExpandLess /> : <ExpandMore />}
 					</ListItemButton>
-					<Collapse in={routeOpen} timeout="auto" unmountOnExit>
+					<Collapse in={routeOpen[cities.id]} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
 							{ 
 								cityList.map((route) => (
 									<RouterLink key={route.name} to={`${route.path}`}>
-										<ListItemButton selected={pathName == '/' + route.path} onClick={() => { toggleDrawer(false); handleListItemClick(route.path) }} sx={{ pl:4 }}>
+										<ListItemButton selected={pathName == '/' + route.path} onClick={() => { toggleDrawer(false); handleListItemClick(route.path, false) }} sx={{ pl:4 }}>
 												<DrawerListItemText primary={route.name} />
 										</ListItemButton>
 									</RouterLink>
@@ -141,18 +141,37 @@ export default function Navbar(data) {
 					</Collapse>
 
 					
-					<ListItemButton onClick={handleCdoClick}>
+					<ListItemButton onClick={() => handleRouteClick(cdoRoutes.id)}>
 						<ListItemIcon><RouteOutlinedIcon /></ListItemIcon>
-						<ListItemText primary='Cagayan de Oro' />
-						{cdoOpen ? <ExpandLess /> : <ExpandMore />}
+						<ListItemText primary={cdoRoutes.name} />
+						{routeOpen[cdoRoutes.id] ? <ExpandLess /> : <ExpandMore />}
 					</ListItemButton>
-					<Collapse in={cdoOpen} timeout="auto" unmountOnExit>
+					<Collapse in={routeOpen[cdoRoutes.id]} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
 							{ 
-								data.prop.cdo.map((cdo) => (
+								cdoRoutes.submenu.map((cdo) => (
 									<RouterLink key={cdo.name} to={`${cdo.path}`}>
-										<ListItemButton selected={pathName == '/' + cdo.path} onClick={() => { toggleDrawer(false); handleListItemClick(cdo.path) }} sx={{ pl:4 }}>
+										<ListItemButton selected={pathName == '/' + cdo.path} onClick={() => { toggleDrawer(false); handleListItemClick(cdo.path, false) }} sx={{ pl:4 }}>
 												<DrawerListItemText primary={cdo.name} />
+										</ListItemButton>
+									</RouterLink>
+								))
+							}
+						</List>
+					</Collapse>
+
+					<ListItemButton onClick={() => handleRouteClick(cebuRoutes.id)}>
+						<ListItemIcon><RouteOutlinedIcon /></ListItemIcon>
+						<ListItemText primary={cebuRoutes.name} />
+						{routeOpen[cebuRoutes.id] ? <ExpandLess /> : <ExpandMore />}
+					</ListItemButton>
+					<Collapse in={routeOpen[cebuRoutes.id]} timeout="auto" unmountOnExit>
+						<List component="div" disablePadding>
+							{ 
+								cebuRoutes.submenu.map((route) => (
+									<RouterLink key={route.name} to={`${route.path}`}>
+										<ListItemButton selected={pathName == '/' + route.path} onClick={() => { toggleDrawer(false); handleListItemClick(route.path, false) }} sx={{ pl:4 }}>
+												<DrawerListItemText primary={route.name} />
 										</ListItemButton>
 									</RouterLink>
 								))

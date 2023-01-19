@@ -11,7 +11,7 @@ const cebu03b = () => {
     <Paper sx={paperStyle} flex={1}>
       <iframe 
         style={{height:'100%', width:'100%', position:'relative', overflow:'hidden'}}
-        src="https://www.google.com/maps/d/u/2/embed?mid=1lAmOGo53GN77kvok61PmsqKsvnIELnI&ehbc=2E312F"
+        src="https://www.google.com/maps/d/u/0/embed?mid=1Y0aM-XBv-1lZTQPkq1C0kny1ohm8-XQ&ehbc=2E312F"
       >
       </iframe>
     </Paper>

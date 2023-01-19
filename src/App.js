@@ -15,49 +15,74 @@ import RC from "./components/RouteCagayandeoro/rc";
 import C03B from "./components/RouteCebu/03b.js"
 import C03L from "./components/RouteCebu/03l.js"
 import C03Q from "./components/RouteCebu/03q.js"
+import C04B from "./components/RouteCebu/04b.js"
+import C04H from "./components/RouteCebu/04h.js"
+import C04I from "./components/RouteCebu/04i.js"
+import C04L from "./components/RouteCebu/04l.js"
+import C04M from "./components/RouteCebu/04m.js"
+import C06B from "./components/RouteCebu/06b.js"
+import C06C from "./components/RouteCebu/06c.js"
+import C06G from "./components/RouteCebu/06g.js"
+import C06H from "./components/RouteCebu/06h.js"
+import C07B from "./components/RouteCebu/06b.js"
 
 function App() {
 
-  // List of city with route
-  const cityList = [
-    {name:'Cagayan de Oro City', path:'city/cagayandeorocity'},
-    {name:'Cebu City', path:'city/cebucity'},
-    {name:'About', path:'about', index:2}
-  ];
+  // Main data
+  const navList = [
 
-  // List of routes in CDO
-  const cdoRoute = [
-    {name:'RD', path:'route/cagayandeoro/rd', src:''},
-    {name:'RC', path:'route/cagayandeoro/rc', src:''},
+    {id:0, name:'Cities', submenu:[
+      {name:'Cagayan de Oro City', component:Cagayan, path:'city/cagayandeorocity'},
+      {name:'Cebu City', component:Cebu, path:'city/cebucity'},
+      {name:'About', component:About, path:'about'}
+    ]},
+    {id:1, name:'Cagayan de Oro', submenu:[
+      {name:'RD', path:'route/cagayandeoro/rd', component:RD},
+      {name:'RC', path:'route/cagayandeoro/rc', component:RC},
+    ]},
+    {id:2, name:'Cebu', submenu:[
+      {name:'03B', path:'route/cebu/03b', component:C03B},
+      {name:'03L', path:'route/cebu/03l', component:C03L},
+      {name:'03Q', path:'route/cebu/03q', component:C03Q},
+      {name:'04B', path:'route/cebu/04b', component:C04B},
+      {name:'04H', path:'route/cebu/04h', component:C04H},
+      {name:'04I', path:'route/cebu/04i', component:C04I},
+      {name:'04L', path:'route/cebu/04l', component:C04L},
+      {name:'04M', path:'route/cebu/04m', component:C04M},
+      {name:'06B', path:'route/cebu/06b', component:C06B},
+      {name:'06C', path:'route/cebu/06c', component:C06C},
+      {name:'06G', path:'route/cebu/06g', component:C06G},
+      {name:'06H', path:'route/cebu/06h', component:C06H},
+      {name:'07B', path:'route/cebu/07b', component:C07B},
+    ]}
   ];
-
-  // List of routes in cebu
-  const cebuRoute = [
-    {name:'03B', path:'route/cebu/04b', src:''},
-    {name:'03L', path:'route/cebu/03L', src:''},
-    {name:'03Q', path:'route/cebu/03L', src:''},
-  ]
 
   return (
     <Box sx={{ height:'100%', overflow:'hidden'}} flex={1}>
-      <Navbar prop={{ city:cityList, cdo:cdoRoute, cebu:cebuRoute }} />
+      <Navbar prop={navList} />
       <Box sx={{ height:'100%', overflow:'hidden' }} flex={1}>
         <Routes>
 
           {/* City and About us route */}
-          <Route path="city/cagayandeorocity" element={<Cagayan />} />
-          <Route path="city/cebucity" element={<Cebu />} />
-          <Route path="about" element={<About />} />
+          {
+            navList[0].submenu.map((route) => (
+              <Route key="route.name" path={route.path} element={<route.component />} />  
+            ))
+          }
 
           {/* Cagayan de oro Route */}
-          <Route path="route/cagayandeoro/rd" element={<RD />} />
-          <Route path="route/cagayandeoro/rc" element={<RC />} />
+          {
+            navList[1].submenu.map((route) => (
+              <Route key="route.name" path={route.path} element={<route.component />} />  
+            ))
+          }
           
           {/* Cebu Route */}
-          <Route path="route/cagayandeoro/rd" element={<C03B />} />
-          <Route path="route/cagayandeoro/rd" element={<C03L />} />
-          <Route path="route/cagayandeoro/rd" element={<C03Q />} />
-
+          {
+            navList[2].submenu.map((route) => (
+              <Route key="route.name" path={route.path} element={<route.component />} />  
+            ))
+          }
           
           <Route path="*" element={<Navigate to="city/cagayandeorocity" replace />} />
         </Routes>

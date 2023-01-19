@@ -6,16 +6,16 @@ const paperStyle = {
   overflow:"hidden"
 };
 
-const cebu03b = () => {
+const cebu = () => {
   return (
     <Paper sx={paperStyle} flex={1}>
       <iframe 
         style={{height:'100%', width:'100%', position:'relative', overflow:'hidden'}}
-        src="https://www.google.com/maps/d/u/2/embed?mid=1AaK5NM8Z75cElP0WsX32dsmgRXcRLNE&ehbc=2E312F"
+        src="https://www.google.com/maps/d/u/0/embed?mid=1T9sErGImEQyzDf4SDP3XaH1rvyQXyX0&ehbc=2E312F"
       >
       </iframe>
     </Paper>
   );
 };
 
-export default cebu03b;
+export default cebu;
