@@ -43,9 +43,9 @@ const About = () => {
       <Box sx={boxSpace}>
         <Typography variant="h5" component="h2">Give us Feedback</Typography>
         <Typography>
-          Your feedback would greatly help us improve the experience of Routa.ph. Click the button below to provide us your suggestions, feedback, opportunities, or partnerships.
+          We greatly appreciate your feedback as it would help us improve the experience of Routa.ph. Click the button below to provide us your suggestions, feedback, opportunities, or partnerships.
         </Typography>
-        <Button variant="contained" size="medium" color="primary" sx={{mt:2}} href="https://docs.google.com/forms/d/e/1FAIpQLScLMmvUEe2IsBpK0ciWGMmq4g90BZFjN1s7iqMj1JgKoxp0oQ/viewform?usp=sf_link">Give Feedback</Button>
+        <Button variant="contained" size="medium" color="primary" sx={{mt:2}} href="https://docs.google.com/forms/d/e/1FAIpQLSeb-FjJlU2Ims0G6EfrK9XQkeJ7bvQYJVMBPNnU7EtL_M8UfQ/viewform?usp=sf_link">Give Feedback</Button>
       </Box>
 
       <Box sx={boxSpace}>
@@ -62,6 +62,13 @@ const About = () => {
           Share your ideas, provide some suggestions and feedback, become a contributor and get news and updates from the developers.
         </Typography>
         <Button variant="contained" size="medium" color="discordColor" href="https://discord.gg/8nC5y96q" sx={{mt:2}} startIcon={<FontAwesomeIcon icon={faDiscord} />}>Join Discord</Button>
+      </Box>
+
+      <Box sx={boxSpace}>
+        <Typography variant="h5" component="h2">Contact Us</Typography>
+        <Typography>
+          For concerns, please email us: plaridelmust@gmail.com
+        </Typography>
       </Box>
 
       <Box sx={boxSpace}>

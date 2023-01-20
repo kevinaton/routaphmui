@@ -1,16 +1,12 @@
-import { Paper, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
+import { Container } from "@mui/system";
 import * as React from "react";
-
-const paperStyle = {
-  height: "93vh", 
-  overflow:"hidden"
-};
 
 const Cagayan = () => {
   return (
-    <Paper sx={paperStyle} flex={1}>
+    <Container sx={{mt:4, pb:5}} maxWidth="xl">
       <Typography>Welcome to cagayan de oro</Typography>
-    </Paper>
+    </Container>
   );
 };
 

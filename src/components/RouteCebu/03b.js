@@ -1,4 +1,4 @@
-import { Chip, Paper, Typography } from "@mui/material";
+import { Box, Chip, Paper, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import * as React from "react";
 
@@ -12,13 +12,13 @@ const locations = [ 'Sindulan St', 'St Joseph Parish', 'The Persimmon', 'Hopodro
 const cebu03b = () => {
   return (
     <Paper>
-      <Paper sx={paperStyle} flex={1}>
+      <Box sx={paperStyle} flex={1}>
         <iframe 
           style={{height:'100%', width:'100%', position:'relative', overflow:'hidden'}}
           src="https://www.google.com/maps/d/u/2/embed?mid=17WFs8gvTCDMxae9xT0BbClFJlCpXe7s&ehbc=2E312F"
         >
         </iframe>
-      </Paper>
+      </Box>
       <Container sx={{mt:4, pb:5}} maxWidth="xl">
         <Typography variant="h4" component="h2">03B Route Mabolo to Carbon</Typography>
         <Typography variant="h6" component="h5">Jeepney Route</Typography>

@@ -33,6 +33,27 @@ import C09G from "./components/RouteCebu/09g.js"
 import C10F from "./components/RouteCebu/10f.js"
 import C10G from "./components/RouteCebu/10g.js"
 import C10H from "./components/RouteCebu/10h.js"
+import C10M from "./components/RouteCebu/10m.js"
+import C11A from "./components/RouteCebu/11a.js"
+import C12D from "./components/RouteCebu/12d.js"
+import C12G from "./components/RouteCebu/12g.js"
+import C12I from "./components/RouteCebu/12i.js"
+import C12L from "./components/RouteCebu/12l.js"
+import C13B from "./components/RouteCebu/13b.js"
+import C13C from "./components/RouteCebu/13c.js"
+import C13H from "./components/RouteCebu/13h.js"
+import C14D from "./components/RouteCebu/14d.js"
+import C17B from "./components/RouteCebu/17b.js"
+import C17C from "./components/RouteCebu/17c.js"
+import C17D from "./components/RouteCebu/17d.js"
+import C20A from "./components/RouteCebu/20a.js"
+import C21A from "./components/RouteCebu/21a.js"
+import C22A from "./components/RouteCebu/22a.js"
+import C22D from "./components/RouteCebu/22d.js"
+import C22I from "./components/RouteCebu/22i.js"
+import C23D from "./components/RouteCebu/23d.js"
+import C62B from "./components/RouteCebu/62b.js"
+import C01K from "./components/RouteCebu/01k.js"
 
 
 function App() {
@@ -71,6 +92,27 @@ function App() {
       {name:'10F', path:'route/cebu/10f', component:C10F},
       {name:'10G', path:'route/cebu/10g', component:C10G},
       {name:'10H', path:'route/cebu/10h', component:C10H},
+      {name:'10M', path:'route/cebu/10m', component:C10M},
+      {name:'11A', path:'route/cebu/11a', component:C11A},
+      {name:'12D', path:'route/cebu/12d', component:C12D},
+      {name:'12G', path:'route/cebu/12g', component:C12G},
+      {name:'12I', path:'route/cebu/12i', component:C12I},
+      {name:'12L', path:'route/cebu/12l', component:C12L},
+      {name:'13B', path:'route/cebu/13b', component:C13B},
+      {name:'13C', path:'route/cebu/13c', component:C13C},
+      {name:'13H', path:'route/cebu/13h', component:C13H},
+      {name:'14D', path:'route/cebu/14d', component:C14D},
+      {name:'17B', path:'route/cebu/17b', component:C17B},
+      {name:'17C', path:'route/cebu/17c', component:C17C},
+      {name:'17D', path:'route/cebu/17d', component:C17D},
+      {name:'20A', path:'route/cebu/20a', component:C20A},
+      {name:'21A', path:'route/cebu/21a', component:C21A},
+      {name:'22A', path:'route/cebu/22a', component:C22A},
+      {name:'22D', path:'route/cebu/22d', component:C22D},
+      {name:'22I', path:'route/cebu/22i', component:C22I},
+      {name:'23D', path:'route/cebu/23d', component:C23D},
+      {name:'62B', path:'route/cebu/62b', component:C62B},
+      {name:'01K', path:'route/cebu/01k', component:C01K},
     ]}
   ];
 
