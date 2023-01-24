@@ -4,7 +4,6 @@ import Cebu from "../Views/Cities/Cebu";
 import About from "../Views/About";
 
 // Cagayan de oro routes
-import RD from "../Views/RouteCagayandeoro/rd";
 import RC from "../Views/RouteCagayandeoro/rc";
 
 const masterList = [
@@ -14,7 +13,13 @@ const masterList = [
     {name:'About', component:About, path:'about'}
   ]},
   {id:1, name:'Cagayan de Oro', submenu:[
-    {name:'RD', path:'route/cagayandeoro/rd', component:RD},
+    {
+      name:'RD',
+      path:'route/cagayandeoro/rd',
+      mapSrc:'https://www.google.com/maps/d/u/2/embed?mid=17WFs8gvTCDMxae9xT0BbClFJlCpXe7s&ehbc=2E312F',
+      title:'RD Cugman to Divisoria',
+      locations:['Chali Beach', 'Cugman Elementary School', 'Robinsons Gusa', 'University of Science and Technology of Southern Philippines (USTP)', 'Limketkai Center', 'Lux Hotel', 'SM Downtown', 'Centrio Ayala Mall', 'Gaisano Mall', 'Gaisano City', 'Capitolyo Misamis Oriental', 'Cagayan de Oro Divisoria', 'Lourdes College', 'Cagayan de Oro City Hall', 'Xavier University College', 'Cogon Market']
+    },
     {name:'RC', path:'route/cagayandeoro/rc', component:RC},
   ]},
   {id:2, name:'Cebu', submenu:[
@@ -345,6 +350,48 @@ const masterList = [
       path:'route/cebu/mi-02b',
       mapSrc:'https://www.google.com/maps/d/u/0/embed?mid=1u9R5sD7uFMwttqGMNJpVjwdtakFRj1g&ehbc=2E312F',
       title:'MI-02B Parkmall to Maribago Mactan Cebu',
+      locations:[]
+    },
+    {
+      name:'MI-03A', 
+      path:'route/cebu/mi-03a',
+      mapSrc:'https://www.google.com/maps/d/u/0/embed?mid=1mhtZCLhoE2e2j8U-kVYduObaPr_N784&ehbc=2E312F',
+      title:'MI-03A Cordova to Lapu Lapu',
+      locations:[]
+    },
+    {
+      name:'MI-03B', 
+      path:'route/cebu/mi-03b',
+      mapSrc:'https://www.google.com/maps/d/u/0/embed?mid=1hCr8AjjTnd8PbX5-OngLccXW9NwCOGg&ehbc=2E312F',
+      title:'MI-03B Mactan to Cordova',
+      locations:[]
+    },
+    {
+      name:'MI-04A', 
+      path:'route/cebu/mi-04a',
+      mapSrc:'https://www.google.com/maps/d/u/0/embed?mid=1-GtmjauCCM73aN6EfP-4_gT2tdwB7Ek&ehbc=2E312F',
+      title:'MI-04A Mactan to Tamiya',
+      locations:[]
+    },
+    {
+      name:'MI-04B', 
+      path:'route/cebu/mi-04b',
+      mapSrc:'https://www.google.com/maps/d/u/0/embed?mid=1BYjiKVDI7f_lzcAQBJzGzmQQ47MHwX0&ehbc=2E312F',
+      title:'MI-04A Mactan to MEPZ2',
+      locations:[]
+    },
+    {
+      name:'MI-05A', 
+      path:'route/cebu/mi-05a',
+      mapSrc:'https://www.google.com/maps/d/u/0/embed?mid=1ys8DS6OllhxC-6-qn_laZEQNuWazFDU&ehbc=2E312F',
+      title:'MI-05A Mactan Airport to Opon Jeep',
+      locations:[]
+    },
+    {
+      name:'Route 23', 
+      path:'route/cebu/route23',
+      mapSrc:'https://www.google.com/maps/d/u/0/embed?mid=1ki7OipHVidhszQcd8HUi3Da-y0Kt8bE&ehbc=2E312F',
+      title:'Route 23 Parkmall to Punta Engaño',
       locations:[]
     },
 
