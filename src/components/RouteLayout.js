@@ -8,7 +8,7 @@ const paperStyle = {
   overflow:"hidden"
 };
 
-const cebu = ({ data }) => {
+const route = ({ data }) => {
   const info = data
   return (
   <Paper>
@@ -35,4 +35,4 @@ const cebu = ({ data }) => {
   );
 };
 
-export default cebu;
+export default route;

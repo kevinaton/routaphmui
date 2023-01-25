@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router";
 import Navbar from "./Views/Navbar";
 import MasterList from "./assets/masterList"
 import RouteLayout from "./components/RouteLayout"
+import CityLayout from "./components/CityLayout";
 
 function App() {
 
@@ -14,15 +15,15 @@ function App() {
 
           {/* City and About us route */}
           {
-            MasterList[0].submenu.map((route) => (
-              <Route key="route.name" path={route.path} element={<route.component />} />  
+            MasterList[0].submenu.map((data) => (
+              <Route key="route.name" path={data.path} element={<CityLayout data={data} />} />  
             ))
           }
 
           {/* Cagayan de oro Route */}
           {
             MasterList[1].submenu.map((route) => (
-              <Route key="route.name" path={route.path} element={<RouteLayout />} />  
+              <Route key="route.name" path={route.path} element={<RouteLayout data={route} />} />  
             ))
           }
           
