@@ -2,18 +2,18 @@
 import About from "../Views/About";
 
 const masterList = [
-  {id:0, name:'Cities', submenu:[
-    {name:'Cagayan de Oro City', path:'city/cagayandeorocity', id:1},
-    {name:'Cebu City', path:'city/cebucity', id:2},
-    {name:'About', component:About, path:'about'}
+  {id:0, name:'About', component:About, path:'about'},
+  {id:1, name:'Cities', submenu:[
+    {name:'Cagayan de Oro City', path:'city/cagayandeorocity', mapSrc:'https://www.google.com/maps/d/u/2/embed?mid=1lAmOGo53GN77kvok61PmsqKsvnIELnI&ehbc=2E312F', id:2, },
+    {name:'Cebu City', path:'city/cebucity', id:3},
   ]},
-  {id:1, name:'Cagayan de Oro', submenu:[
+  {id:2, name:'Cagayan de Oro', submenu:[
     {
       name:'RD',
       path:'route/cagayandeoro/rd',
       mapSrc:'https://www.google.com/maps/d/u/2/embed?mid=1h-zF-uNY_CanJWZ7jp673H85E06a7IM&ehbc=2E312F',
       title:'RD Cugman to Cogon Market',
-      locations:['Chali Beach', 'Cugman Elementary School', 'Robinsons Gusa', 'Capitol Universtity Medical Center', 'University of Science and Technology of Southern Philippines (USTP)', 'Limketkai Center', 'Lux Hotel', 'SM Downtown', 'Centrio Ayala Mall', 'Gaisano Mall', 'Gaisano City', 'Capitolyo Misamis Oriental', 'Cagayan de Oro Divisoria', 'Lourdes College', 'Cagayan de Oro City Hall', 'Xavier University College', 'Cogon Market']
+      locations:['Chali Beach', 'Cugman Elementary School', 'Ropbinsons Gusa', 'Capitol Universtity Medical Center', 'University of Science and Technology of Southern Philippines (USTP)', 'Limketkai Center', 'Lux Hotel', 'SM Downtown', 'Centrio Ayala Mall', 'Gaisano Mall', 'Gaisano City', 'Capitolyo Misamis Oriental', 'Cagayan de Oro Divisoria', 'Lourdes College', 'Cagayan de Oro City Hall', 'Xavier University College', 'Cogon Market']
     },
     {
       name:'RC',
@@ -38,7 +38,7 @@ const masterList = [
     },
     
   ]},
-  {id:2, name:'Cebu', submenu:[
+  {id:3, name:'Cebu', submenu:[
     {
       name:'03B', 
       path:'route/cebu/03b', 

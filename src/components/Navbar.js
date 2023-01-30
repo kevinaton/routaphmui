@@ -40,17 +40,13 @@ export default function Navbar(data) {
 	}
 	
 	// Get cities and about path
-	const aboutDetails = data.prop[0].submenu.filter((element) => {
-		return element.name == 'About'
-	})
-	const cityList = data.prop[0].submenu.filter((element) => {
-		return element.name != 'About'
-	})
+	const aboutDetails = data.prop[0]
+	const cityList = data.prop[1].submenu
 
 	// Get Nav details
-	const cities = data.prop[0],
-				cdoRoutes = data.prop[1],
-				cebuRoutes = data.prop[2]
+	const cities = data.prop[1],
+				cdoRoutes = data.prop[2],
+				cebuRoutes = data.prop[3]
 
 	// Handle the sidemenu toggle
 	const [state, setState] = React.useState(false);
@@ -179,12 +175,10 @@ export default function Navbar(data) {
 						</List>
 					</Collapse>
 					
-					
-
-					<RouterLink underline='none' to={aboutDetails[0].path} >
-						<ListItemButton selected={pathName == '/' + aboutDetails[0].path} onClick={() => { toggleDrawer(false); handleListItemClick(aboutDetails[0].path) }}>
+					<RouterLink underline='none' to={aboutDetails.path} >
+						<ListItemButton selected={pathName == '/' + aboutDetails.path} onClick={() => { toggleDrawer(false); handleListItemClick(aboutDetails.path, false) }}>
 								<ListItemIcon><InfoOutlined /></ListItemIcon>
-								<DrawerListItemText primary={aboutDetails[0].name} />
+								<DrawerListItemText primary={aboutDetails.name} />
 						</ListItemButton>
 					</RouterLink>
 				</List>
