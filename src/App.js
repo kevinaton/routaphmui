@@ -1,12 +1,13 @@
-import { Box } from "@mui/material";
+import { BottomNavigation, Box } from "@mui/material";
 import { Navigate, Route, Routes } from "react-router";
 import Navbar from "./components/Navbar";
 import MasterList from "./assets/masterList"
 import RouteLayout from "./components/RouteLayout"
 import CityLayout from "./components/CityLayout";
-import About from "./Views/About";
 
 function App() {
+  const AboutComponent = MasterList[0].component
+  const HelpComponent = MasterList[4].component
 
   return (
     <Box sx={{ height:'100%', overflow:'hidden'}} flex={1}>
@@ -38,13 +39,17 @@ function App() {
           }
 
           {/* About */}
-          <Route path={MasterList[0].path} element={<About />} />
+          <Route path={MasterList[0].path} element={<AboutComponent />} />
+          
+          {/* Help */}
+          <Route path={MasterList[4].path} element={<HelpComponent />} />
           
           {/* Default page */}
           <Route path="*" element={<Navigate to="city/cagayandeorocity" replace />} />
 
         </Routes>
       </Box>
+      <BottomNavigation>Testing lang</BottomNavigation>
     </Box>
   );
 }

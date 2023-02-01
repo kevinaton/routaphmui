@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, Grid, Link, Paper, Typography } from "@mui/material";
+import { Box, Card, CardActions, CardContent, Grid, Link, Paper, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import * as React from "react";
 import MasterList from "../assets/masterList"
@@ -10,7 +10,7 @@ const paperStyle = {
 };
 
 const CityLayout = (data) => {
-  
+   
   if(data.data.mapSrc == undefined){
     paperStyle.display = "none"
   }
@@ -57,7 +57,6 @@ const CityLayout = (data) => {
               >{ data.locations.length >> 0 ? data.locations.join(', ') : 'No landmarks added yet'}</Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <Button href={ '/' + data.path } sx={{marginLeft: "auto"}} color="blacktext" size="small">View Route</Button>
             </CardActions>
           </Card>
           </Grid>

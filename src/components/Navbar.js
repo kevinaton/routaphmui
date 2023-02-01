@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, Collapse, CssBaseline, Divider, IconButton, List, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import { ChevronLeft, ChevronRight, InfoOutlined, ExpandLess, ExpandMore, LocationCityOutlined } from '@mui/icons-material';
+import { ChevronLeft, ChevronRight, InfoOutlined, ExpandLess, ExpandMore, LocationCityOutlined, HelpOutline } from '@mui/icons-material';
 import RouteOutlinedIcon from '@mui/icons-material/RouteOutlined';
 import {Link} from 'react-router-dom';
 
@@ -25,9 +25,20 @@ const DrawerListItemText = styled(ListItemText) (({ theme }) => ({
 	color:theme.palette.blacktext.main,
 }))
 
-
+const drawerFooter = {
+	position:'absolute',
+	bottom: 0,
+	right: 0,
+	left: 0,
+	pl:2
+}
 
 export default function Navbar(data) {
+
+	// Get current year
+	function automatedYear() {
+		return new Date().getFullYear();
+	}
 	
 	// adding theme
 	const theme = useTheme()
@@ -41,6 +52,8 @@ export default function Navbar(data) {
 	
 	// Get cities and about path
 	const aboutDetails = data.prop[0]
+	const helpDetails = data.prop[4]
+
 	const cityList = data.prop[1].submenu
 
 	// Get Nav details
@@ -97,7 +110,8 @@ export default function Navbar(data) {
 				onClose={toggleDrawer(false)}
 				onOpen={toggleDrawer(true)}
 				sx={{ 
-					width:drawerWidth, 
+					width:drawerWidth,
+					position:'relative',
 					flexShrink: 0,
 					'& .MuiDrawer-paper': {
 						width: drawerWidth,
@@ -181,7 +195,17 @@ export default function Navbar(data) {
 								<DrawerListItemText primary={aboutDetails.name} />
 						</ListItemButton>
 					</RouterLink>
+
+					<RouterLink underline='none' to={helpDetails.path} >
+						<ListItemButton selected={pathName == '/' + helpDetails.path} onClick={() => { toggleDrawer(false); handleListItemClick(helpDetails.path, false) }}>
+								<ListItemIcon><HelpOutline /></ListItemIcon>
+								<DrawerListItemText primary={helpDetails.name} />
+						</ListItemButton>
+					</RouterLink>
+
 				</List>
+				<Typography sx={drawerFooter}>Copyright &copy; {automatedYear()} routa.ph All Rights Reserved</Typography>
+				
 			</SwipeableDrawer>
 		</Box>
 	);
