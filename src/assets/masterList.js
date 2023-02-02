@@ -1,6 +1,7 @@
 // Cityies and about
 import About from "../Views/About";
 import Help from "../Views/Help"
+import Home from "../Views/Home";
 
 const masterList = [
   {id:0, name:'About', component:About, path:'about'},
@@ -414,6 +415,7 @@ const masterList = [
 
   ]},
   {id:4, name:'Help', component:Help, path:'help'},
+  {id:5, name:'Home', component:Home, path:''},
 ]
 
 export default masterList;

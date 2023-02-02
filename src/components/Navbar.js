@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, Collapse, CssBaseline, Divider, IconButton, List, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import { ChevronLeft, ChevronRight, InfoOutlined, ExpandLess, ExpandMore, LocationCityOutlined, HelpOutline } from '@mui/icons-material';
+import { ChevronLeft, ChevronRight, InfoOutlined, ExpandLess, ExpandMore, LocationCityOutlined, HelpOutline, LocationOnOutlined } from '@mui/icons-material';
 import RouteOutlinedIcon from '@mui/icons-material/RouteOutlined';
 import {Link} from 'react-router-dom';
 
@@ -50,10 +50,12 @@ export default function Navbar(data) {
 		setState(toggleState)
 	}
 	
-	// Get cities and about path
+	// Get about, help and home
 	const aboutDetails = data.prop[0]
 	const helpDetails = data.prop[4]
+	const homeDetails = data.prop[5]
 
+	// Get cityList
 	const cityList = data.prop[1].submenu
 
 	// Get Nav details
@@ -130,7 +132,14 @@ export default function Navbar(data) {
 					sx={{ width:'100%'}}
 					component="nav"
 					disablePadding
-				>					
+				>
+					<RouterLink underline='none' to={homeDetails.path} >
+						<ListItemButton selected={pathName == '/' + homeDetails.path} onClick={() => { toggleDrawer(false); handleListItemClick(homeDetails.path, false) }}>
+								<ListItemIcon><LocationOnOutlined /></ListItemIcon>
+								<DrawerListItemText primary={homeDetails.name} />
+						</ListItemButton>
+					</RouterLink>
+
 					<ListItemButton onClick={() => handleRouteClick(cities.id)}>
 						<ListItemIcon><LocationCityOutlined /></ListItemIcon>
 						<ListItemText primary={cities.name} />

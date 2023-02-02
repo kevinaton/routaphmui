@@ -18,7 +18,7 @@ const About = () => {
     <Container sx={{p:5}} maxWidth="xl">
       <Box sx={boxSpace}>
         <Typography sx={{display:'none'}} variant="h4" component="h1">Help</Typography>
-        <Typography variant="h4" component="h3">How to use th routa.ph</Typography>
+        <Typography variant="h4" component="h3">How to use routa.ph</Typography>
         <Typography variant="body1" component="p">
           Here's a simple step on how to use routa.ph:
         </Typography>
