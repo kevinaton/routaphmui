@@ -1,7 +1,9 @@
 import { Box, Card, CardActions, CardContent, Grid, Link, Paper, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import * as React from "react";
-import MasterList from "../assets/masterList"
+import data from "../assets/masterList.json"
+
+const {MasterList} = data
 
 const paperStyle = {
   height: "86vh", 
@@ -10,10 +12,10 @@ const paperStyle = {
 };
 
 const CityLayout = (data) => {
-   
-  if(data.data.mapSrc == undefined){
+  
+  if(data.data.mapSrc == undefined || ""){
     paperStyle.display = "none"
-  }
+  } else paperStyle.display = ""
 
   return (
   <Paper sx={{pb:5}}>

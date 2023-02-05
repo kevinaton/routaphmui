@@ -26,10 +26,7 @@ const DrawerListItemText = styled(ListItemText) (({ theme }) => ({
 }))
 
 const drawerFooter = {
-	position:'absolute',
-	bottom: 0,
-	right: 0,
-	left: 0,
+	mt:5,
 	pl:2
 }
 
@@ -51,17 +48,17 @@ export default function Navbar(data) {
 	}
 	
 	// Get about, help and home
-	const aboutDetails = data.prop[0]
-	const helpDetails = data.prop[4]
-	const homeDetails = data.prop[5]
+	const homeDetails = data.prop.Pages[0]
+	const helpDetails = data.prop.Pages[1]
+	const aboutDetails = data.prop.Pages[2]
 
 	// Get cityList
-	const cityList = data.prop[1].submenu
+	const cityList = data.prop.MasterList[0].submenu
 
 	// Get Nav details
-	const cities = data.prop[1],
-				cdoRoutes = data.prop[2],
-				cebuRoutes = data.prop[3]
+	const cities = data.prop.MasterList[0],
+				cdoRoutes = data.prop.MasterList[1],
+				cebuRoutes = data.prop.MasterList[2]
 
 	// Handle the sidemenu toggle
 	const [state, setState] = React.useState(false);
