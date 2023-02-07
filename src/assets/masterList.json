@@ -2,8 +2,8 @@
 {
   "MasterList": [
     {"id":0, "name":"Cities", "submenu":[
-      {"name":"Cagayan de Oro City", "path":"city/cagayandeorocity", "mapSrc":"https://www.google.com/maps/d/u/2/embed?mid=1lAmOGo53GN77kvok61PmsqKsvnIELnI&ehbc=2E312F", "id":1 },
-      {"name":"Cebu City", "path":"city/cebucity", "id":2}
+      {"id":1, "name":"Cagayan de Oro City", "path":"city/cagayandeorocity", "mapSrc":"https://www.google.com/maps/d/u/2/embed?mid=1lAmOGo53GN77kvok61PmsqKsvnIELnI&ehbc=2E312F", "position":{"lat": 8.468116915462604, "lng": 124.64139117461927} },
+      {"id":2, "name":"Cebu City", "path":"city/cebucity", "position":{"lat": 10.39344668412612, "lng": 123.77195816886562}}
     ]},
     {"id":1, "name":"Cagayan de Oro", "submenu":[
       {
