@@ -44,12 +44,39 @@ function Home() {
   })
 
   // Set value for search
-  const [search, setSearch] = React.useState('')
+  const [search, setSearch] = React.useState(null)
+  const [result, setResults] = React.useState([])
+  const [isDisplayResult, setDisplayResult] = React.useState(false)
 
   const searchHandler = (value) => {
-    console.log(value)
-    setSearch(value)
+    let loweredCase = value.toLowerCase()
+    setResults(
+      MasterList.filter(searched => {
+        setSearch(value)
+        return searched.name.toLowerCase().includes(loweredCase)
+      })
+    )
   }
+
+  const checkSearchInput = (value) => {
+    if(value.length == 0) {
+      setDisplayResult(false)
+    }
+  }
+
+  // Set display of map and results
+  React.useEffect(()=>{
+    console.log(result)
+    if(result.length >> 0) {
+      setDisplayResult(true)
+    } else {
+      setDisplayResult(false)
+    }
+  }, [result])
+
+  // React.useEffect(()=>{
+  //   console.log(isDisplayResult)
+  // }, [isDisplayResult])
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -60,7 +87,6 @@ function Home() {
   const onLoad = React.useCallback(function callback(map) {
     // only example for getting and using the map instance
     map.setZoom(6)
-
     setMap(map)
   }, [])
 
@@ -77,64 +103,66 @@ function Home() {
     <Box sx={{width:"100%", flexGrow: 1, height:"93vh"}}>
       <Grid sx={{p:3}} container spacing="2">
         <Grid item xs={12} md={4}>
-          <Typography variant="h5" component="h1">Welcome to routa.ph</Typography>
+          <Typography sx={{display:{xs:'none', sm:'block'}}} variant="h5" component="h1">Welcome to routa.ph</Typography>
           <Typography>Click a marker below or search for City, route</Typography>
         </Grid>
         <Grid item sx={{mt:{xs:2, sm:2, md:0}}} xs={12} md={8}>
-          {/* KWAON ANG VALUE SA SEARCHBAR */}
-          <Autocomplete
-            freeSolo={true}
-            id="free-solo-2-demo"
-            disableClearable
-            value={search} 
-            onChange={(event, value)=> searchHandler(value)}
-            options={searchLists}
-            renderInput={(params) => (        
-                <TextField
-                  {...params}
-                  label="Search a city, location, route name,"
-                  InputProps={{
-                    ...params.InputProps,
-                    type: 'search',
-                    endAdornment: (
-                      <InputAdornment position="start">
-                        <IconButton>
-                          <Search />
-                        </IconButton>
-                      </InputAdornment>
-                    )
-                  }}
-                />
-            )}
-          ></Autocomplete>
+
+        <Autocomplete
+          freeSolo={true}
+          id="free-solo-2-demo"
+          disableClearable
+          value={search} 
+          onChange={(event, value)=> searchHandler(value)}
+          onInputChange={(event, value, reason)=>checkSearchInput(value,reason)}
+          options={searchLists}
+          renderInput={(params) => (        
+              <TextField
+                {...params}
+                label="Search a city, location, route name,"
+                InputProps={{
+                  ...params.InputProps,
+                  type: 'search',
+                  endAdornment: (
+                    <InputAdornment position="start">
+                      <IconButton>
+                        <Search />
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
+          )}
+        ></Autocomplete>
         </Grid>
       </Grid>
-      <GoogleMap
-        sx={{height:"92vh"}}
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={6}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
-        {
-          markers.map((mark) => (
-            <MarkerF
-              key={mark.name}
-              title={mark.name}
-              onClick={() => markerClick(mark.path)}
-              position={mark.position}
-              zIndex="999"
-            />
-          ))
-        }
-        <MarkerF
-          title="Current Location"
-          zIndex="1"
-          label="You're here"
-          position={currentPosition}
-        />
-      </GoogleMap>
+      <Box style={{ width:"100%", height:"100%", display: isDisplayResult ? "none" : "block" }}>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={6}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+        >
+          {
+            markers.map((mark) => (
+              <MarkerF
+                key={mark.name}
+                title={mark.name}
+                onClick={() => markerClick(mark.path)}
+                position={mark.position}
+                zIndex="999"
+              />
+            ))
+          }
+          <MarkerF
+            title="Current Location"
+            zIndex="1"
+            label="You're here"
+            position={currentPosition}
+          />
+        </GoogleMap>
+      </Box>
     </Box>
   ) : <></>
 }
