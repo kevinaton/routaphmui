@@ -5,8 +5,15 @@ import { Autocomplete, Grid, IconButton, InputAdornment, TextField, Typography }
 import data from "../assets/masterList.json"
 import { Search } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import youHere from '../assets/youHere.png'
 
 const {MasterList} = data
+
+// Defining you are here icon
+const youHereIcon = {
+  url:youHere,
+  scaledSize: { width:24, height:34.143451143451145 }
+}
 
 var tempLists = []
 MasterList.map((data)=>{
@@ -144,6 +151,12 @@ function Home() {
           onLoad={onLoad}
           onUnmount={onUnmount}
         >
+          <MarkerF
+            icon={youHereIcon}
+            title="Current Location"
+            position={currentPosition}
+            zIndex="100"
+          />
           {
             markers.map((mark) => (
               <MarkerF
@@ -155,12 +168,6 @@ function Home() {
               />
             ))
           }
-          <MarkerF
-            title="Current Location"
-            zIndex="1"
-            label="You're here"
-            position={currentPosition}
-          />
         </GoogleMap>
       </Box>
     </Box>
