@@ -8,6 +8,16 @@ const paperStyle = {
   overflow:"hidden"
 };
 
+const areaList = (info) => {
+  if(info.length >> 0) {
+    return info.locations.map((area, index) => (
+      <Chip key={index} sx={{mr:1, mb:1}} label={area} />
+    ))
+  } else {
+    return <Typography color="grey">No data</Typography>
+  }
+}
+
 const route = ({ data }) => {
   const info = data
   return (
@@ -22,13 +32,9 @@ const route = ({ data }) => {
     <Container sx={{mt:4, pb:5}} maxWidth="xl">
       <Typography variant="h4" component="h2">{info.title ?? ''}</Typography>
       <Typography variant="h6" component="h5">Jeepney Route</Typography>
-      <Paper elevation={2} sx={{mt:4, p:2}}>
+      <Paper variant="outlined" sx={{mt:4, p:2}}>
           <Typography variant="body1" component="p" sx={{mb:2}}>Popular landmarks:</Typography>
-          {
-            info.locations.map((area, index) => (
-              <Chip key={index} sx={{mr:1, mb:1}} label={area} />
-            ))
-          }
+          {areaList(info)}
         </Paper>
     </Container>
   </Paper>
