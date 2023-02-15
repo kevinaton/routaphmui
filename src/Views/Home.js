@@ -89,11 +89,8 @@ function Home() {
             })
           }
         })
-      }
-
-      )
-
-      
+      })
+            
       const rSearchRoute = searchRoute.reduce((acc, item) => [...acc, ...item], []);
       const setResult = [...searchCity, ...rSearchRoute ,...searchLocations]
 
@@ -159,11 +156,11 @@ function Home() {
   return isLoaded ? (
     <Box sx={{width:"100%", height:"100%", flexGrow: 1}}>
       <Grid sx={{p:3}} container spacing="2">
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} sm={12} md={5}>
           <Typography sx={{display:{xs:'none', sm:'block'}}} variant="h5" component="h1">Welcome to routa.ph</Typography>
-          <Typography>Click a marker below or search for a city or route.</Typography>
+          <Typography>Search or click a marked city below.</Typography>
         </Grid>
-        <Grid item sx={{mt:{xs:2, sm:2, md:0}}} xs={12} md={8}>
+        <Grid item sx={{mt:{xs:2, sm:2, md:0}}} xs={12} sm={12} md={7}>
           <Autocomplete
             id="free-solo-2-demo"
             freeSolo={true}
